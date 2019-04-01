@@ -1,0 +1,39 @@
+= Monitoring and tracing
+:toc:
+:toc-title:
+
+== Introduction
+
+TODO
+
+== Script (timing ~10 minutes)
+- start workspace
+- workspace is failing to start
+- what should we do? is user remains "one on one" with the issue? how devs become aware of the issue? how can devs investigate the issue in the Cloud-Native / microservice world?
+- intro to the OpenTracing project and distributed tracing 
+- showing Jaeger integration by finding the root cause of the issue
+- what about the monitoring / health of the system? 
+    - number of failed workspaces?
+    - average workspace startup
+    - JVM specific metrics
+- showing Prometheus / Grafana
+
+
+== Tracing
+- The OpenTracing project
+- Jaeger 
+
+image:./images/jaeger-example.png[]
+
+== Monitoring
+- Prometheus
+- Grafana support for Prometheus
+
+image:./images/graphana-usage.gif[]
+
+== Useful links
+- https://opentracing.io/[The OpenTracing project]
+- https://www.jaegertracing.io/[Jaeger]
+- https://prometheus.io/[Prometheus]
+- https://prometheus.io/docs/visualization/grafana/[Grafana support for Prometheus]
+- https://docs.google.com/document/d/1girFCGQ2fFSYXBXVUYZqLVkD6hzC21enaAodhN7Wrr8/edit[Che Monitoring Doc]
