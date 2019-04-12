@@ -1,0 +1,14 @@
+specVersion: 0.0.1
+name: nodejs-sample
+projects:
+components:
+  - name: theia-editor
+    type: cheEditor
+    id: org.eclipse.che.editor.theia:next
+  - name: exec-plugin
+    type: chePlugin
+    id: che-machine-exec-plugin:0.0.1
+  - name: node-js
+    type: Kubernetes
+    reference: node-js-sample.yaml
+commands:
