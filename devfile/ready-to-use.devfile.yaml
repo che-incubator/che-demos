@@ -1,0 +1,33 @@
+specVersion: 0.0.1
+name: nodejs-sample
+projects:
+  - name: node-js-sample
+    source:
+      type: git
+      location: https://github.com/heroku/node-js-sample.git
+components:
+  - name: theia-editor
+    type: cheEditor
+    id: org.eclipse.che.editor.theia:next
+  - name: exec-plugin
+    type: chePlugin
+    id: che-machine-exec-plugin:0.0.1
+  - name: node-js
+    type: Kubernetes
+    reference: node-js-sample.yaml
+commands:
+  - name: build
+    actions:
+      - type: exec
+        component: node-js
+        command: cd {PROJECTS_ROOT}/node-js-sample && npm install
+  - name: run
+    actions:
+      - type: exec
+        component: node-js
+        command: cd {PROJECTS_ROOT}/node-js-sample && npm install
+  - name: stop
+    actions:
+      - type: exec
+        component: node-js
+        command: kill -9 $(ps aux | grep nodejs | ...)
