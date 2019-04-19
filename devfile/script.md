@@ -12,7 +12,11 @@ TODO
     * `oc apply -f node-js-sample.yaml`
   - Demo that application works fine. On minishift/minikube it should be available at http://nodejs.192.168.99.100.nip.io/
 - Demonstrate Devfile
-  - Use `chectl devfile:generate [flags]` command to generate Devfile
+  - Use `chectl devfile:generate` command to generate Devfile:
+      * devfile:generate --language=typescript \
+            --selector="app.kubernetes.io/name=employee-manager" \
+            --project='{"name":"guestbook", "source": "https://github.com/kubernetes/examples.git"}' \
+            --namespace=nodejs-app generated.devfile.yaml
   - Demonstrate generated [Devfile](generated.devfile.yaml)
 - Customize generated Devfile to be able to start developing
   - Override nodejs container entrypoint not to start an application from the begging
@@ -20,7 +24,7 @@ TODO
 - Develop an application
   - Start a workspace from modified [Devfile](ready-to-use.devfile.yaml)
   - Build and Start an application with tasks
-  - Demonstrate that the application that is run in workspace is working
-  - Make some changes
+  - Demonstrate that the application that is run in workspace is working but bug is there
+  - Fix the bug
   - Restart the application with tasks
-  - Demonstrate that the application is updated with made changes\
+  - Demonstrate that the application is updated and bug is fixed
