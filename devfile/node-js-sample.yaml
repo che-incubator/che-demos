@@ -7,14 +7,20 @@ items:
   kind: Deployment
   metadata:
     labels:
-      name: mongo
-    name: mongo-controller
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: database
+    name: mongo
   spec:
+    selector:
+      matchLabels:
+        app.kubernetes.io/name: employee-manager
+        app.kubernetes.io/component: database
     template:
       metadata:
         labels:
-          name: mongo
-        name: mongo-controller
+          app.kubernetes.io/name: employee-manager
+          app.kubernetes.io/component: database
+        name: mongo
       spec:
         containers:
         - image: mongo
@@ -35,46 +41,52 @@ items:
   metadata:
     name: mongo
     labels:
-      name: mongo
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: database
     name: mongo
   spec:
     ports:
       - port: 27017
         targetPort: 27017
     selector:
-      name: mongo
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: database
 -
   apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
     name: mongo-persistent-storage
+    labels:
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: database
   spec:
     accessModes:
      - ReadWriteOnce
     resources:
       requests:
-        storage: 3Gi
+        storage: 1Gi
 -
   apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: web
     labels:
-      app: nodejs
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: nodejs-app
+    name: nodejs-app
   spec:
-    replicas: 2
     selector:
-      name: web
+      matchLabels:
+        app.kubernetes.io/name: employee-manager
+        app.kubernetes.io/component: nodejs-app
     template:
       metadata:
         labels:
-          app: nodejs
-        name: web-controller
+          app.kubernetes.io/name: employee-manager
+          app.kubernetes.io/component: nodejs-app
+        name: nodejs-app
       spec:
         containers:
-        - image: node:0.10.40
-          command: ['tail', '-f', '/dev/null']
-          args: []
+        - image: "sleshchenko/nodejs-mongo-sample:latest"
           name: web
           ports:
           - containerPort: 3000
@@ -83,26 +95,31 @@ items:
            - mountPath: /projects
              name: projects
         volumes:
-         - name: projects
-           persistentVolumeClaim:
-             claimName: projects
-- apiVersion: v1
+          - name: projects
+            persistentVolumeClaim:
+              claimName: projects
+-
+  apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
     name: projects
+    labels:
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: nodejs-app
   spec:
     accessModes:
      - ReadWriteOnce
     resources:
       requests:
-        storage: 2Gi
+        storage: 1Gi
 -
   apiVersion: v1
   kind: Service
   metadata:
     name: web
     labels:
-      name: web
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: nodejs-app
   spec:
     type: LoadBalancer
     ports:
@@ -111,14 +128,24 @@ items:
         targetPort: 3000
         protocol: TCP
     selector:
-      app: nodejs
-- apiVersion: v1
-  kind: Route
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: nodejs-app
+-
+  apiVersion: extensions/v1beta1
+  kind: Ingress
   metadata:
-    name: che
+    name: nodejs-ingress
+    labels:
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: nodejs-app
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
   spec:
-    to:
-      kind: Service
-      name: web
-    port:
-      targetPort: web
+    rules:
+    - host: nodejs.192.168.99.100.nip.io
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: web
+            servicePort: 80
