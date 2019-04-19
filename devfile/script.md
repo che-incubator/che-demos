@@ -7,8 +7,10 @@ TODO
 
 - Deploy Node JS application with Mongo
   - Demonstrate content of [node-js-sample.yaml](node-js-sample.yaml)
-  - Execute `kubectl/oc apply node-js-sample.yaml`
-  - Demo that application work fine
+  - Execute
+    * `oc new-project nodejs-app`
+    * `oc apply -f node-js-sample.yaml`
+  - Demo that application works fine. On minishift/minikube it should be available at http://nodejs.192.168.99.100.nip.io/
 - Demonstrate Devfile
   - Use `chectl devfile:generate [flags]` command to generate Devfile
   - Demonstrate generated [Devfile](generated.devfile.yaml)
