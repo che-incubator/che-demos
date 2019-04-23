@@ -1,5 +1,5 @@
 specVersion: 0.0.1
-name: editors_theia-ide
+name: editors_gwt-ide
 projects:
   - name: che
     source:
