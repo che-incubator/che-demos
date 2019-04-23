@@ -1,0 +1,10 @@
+specVersion: 0.0.1
+name: editors_dirigible-ide
+projects:
+  - name: che
+    source:
+      type: git
+      location: 'https://github.com/che-incubator/che-demos.git'
+components:
+  - type: cheEditor
+    id: org.eclipse.che.editor.dirigible:1.0.0
