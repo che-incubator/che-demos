@@ -1,0 +1,12 @@
+specVersion: 0.0.1
+name: editors_theia-ide
+projects:
+  - name: che
+    source:
+      type: git
+      location: 'https://github.com/che-incubator/che-demos.git'
+components:
+  - type: cheEditor
+    id: org.eclipse.che.editor.theia:next
+  - type: chePlugin
+    id: che-machine-exec-plugin:0.0.1
