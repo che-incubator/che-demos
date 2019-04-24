@@ -6,16 +6,16 @@ TODO
 ## Script (timing ~15 minutes)
 
 - Deploy Node JS application with Mongo
-  - Demonstrate content of [node-js-sample.yaml](node-js-sample.yaml)
+  - Demonstrate content of [deploy_k8s.yaml](deploy_k8s.yaml)
   - Execute
     * `oc new-project nodejs-app`
-    * `oc apply -f node-js-sample.yaml`
+    * `oc apply -f deploy_k8s.yaml`
   - Demo that application works fine. On minishift/minikube it should be available at http://nodejs.192.168.99.100.nip.io/
 - Demonstrate Devfile
   - Use `chectl devfile:generate` command to generate Devfile:
       * chectl devfile:generate --language=typescript \
             --selector="app.kubernetes.io/name=employee-manager" \
-            --project='{"name":"nodejs-sample-appp", "source": "https://github.com/sleshchenko/NodeJS-Sample-App.git"}' \
+            --project='{"name":"nodejs-sample-appp", "source": {"type":"git", "location":"https://github.com/sleshchenko/NodeJS-Sample-App.git"}}' \
             --namespace=nodejs-app > generated.devfile.yaml
   - Demonstrate generated [Devfile](generated.devfile.yaml)
 - Customize generated Devfile to be able to start developing
