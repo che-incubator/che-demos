@@ -4,20 +4,23 @@
 
 == Introduction
 
-TODO
+In the Cloud-Native world monitoring and distributed tracing are the crucial parts of the service not visible to the naked eye, but vital for DevOps in order to obtain various system metrics, easily investigate underline issues and identify potential performance bottlenecks. When the cloud IDE is deployed on a cluster it is utterly important to have enough observability in order to make sure that the development environment is in a good shape, stable and ready to be used. 
+In this session, it will be demonstrated that Eclipse Che running on Kubernetes or OpenShift provides not only a collaborative development environment to the teams but also monitoring and tracing facilities using the cutting edge Cloud-Native stack: Prometheus, Graphana and Jaeger.
 
-== Script (timing ~10 minutes)
+== Script (timing 10-15 minutes)
 - start workspace
 - workspace is failing to start
 - what should we do? is user remains "one on one" with the issue? how devs become aware of the issue? how can devs investigate the issue in the Cloud-Native / microservice world?
 - intro to the OpenTracing project and distributed tracing 
 - showing Jaeger integration by finding the root cause of the issue
-- what about the monitoring / health of the system? 
+    - find workspace by id via `Tag` e.g. `workspace.id="workspaceID" error=true`
+    - Open spans for identifying errors
+    - finding startup of a partcular workspace for different period of times
+- what about the monitoring /  metrics / health of the system? 
     - number of failed workspaces?
     - average workspace startup
     - JVM specific metrics
 - showing Prometheus / Grafana
-
 
 == Tracing
 - The OpenTracing project
