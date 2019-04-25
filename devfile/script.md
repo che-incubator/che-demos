@@ -28,3 +28,7 @@ TODO
   - Execute build task
   - Run application with run task and following Theia instructions to access your application
   - Demonstrate that the application is updated and bug is fixed
+
+P.S. Set env var for your Che Server CHE_WORKSPACE_DEVFILE_DEFAULT__EDITOR=org.eclipse.che.editor.theia:next
+
+Set for optimization: CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent

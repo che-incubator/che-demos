@@ -96,6 +96,10 @@ items:
               value: "mongo"
             - name: MONGO_PORT
               value: "27017"
+          volumes:
+            - name: projects
+              persistentVolumeClaim:
+                claimName: projects
 -
   apiVersion: v1
   kind: Service
@@ -133,3 +137,16 @@ items:
           backend:
             serviceName: web
             servicePort: 80
+- kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    labels:
+      app.kubernetes.io/component: nodejs-app
+      app.kubernetes.io/name: employee-manager
+    name: projects
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
