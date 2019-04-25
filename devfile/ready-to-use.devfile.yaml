@@ -7,7 +7,7 @@ projects:
     name: NodeJS-Sample-App.git
 components:
   - type: kubernetes
-    alias: node-js
+    alias: employee-manager
     referenceContent: |
       kind: List
       apiVersion: v1
@@ -182,15 +182,15 @@ commands:
   - name: build
     actions:
       - type: exec
-        component: node-js
+        component: employee-manager
         command: cd ${CHE_PROJECTS_ROOT}/NodeJS-Sample-App.git/EmployeeDB && npm install
   - name: run
     actions:
       - type: exec
-        component: node-js
+        component: employee-manager
         command: cd ${CHE_PROJECTS_ROOT}/NodeJS-Sample-App.git/EmployeeDB && node app.js
   - name: stop
     actions:
       - type: exec
-        component: node-js
-        command: kill -9 $(ps aux | grep nodejs | ...)
+        component: employee-manager
+        command: ps axf | grep 'node app.js' | grep -v grep | awk '{print "kill -9 " $1}' | sh
