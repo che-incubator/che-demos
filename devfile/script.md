@@ -1,5 +1,18 @@
 # Devfile Demo
 
+## Setup
+1. Create minishift/minikube VM
+    - Demo is tested with minishift VM with 8GB memory allocated
+2. Deploy Che server to local cluster
+    - `chectl server:start [-p minishift]`
+    - After start, additional configuration:
+      - `CHE_WORKSPACE_DEVFILE_DEFAULT__EDITOR=org.eclipse.che.editor.theia:next`
+        - This will need to be modified if https://github.com/eclipse/che/pull/13204 is applied to image used in demo
+      - `CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent`
+3. Modify `deploy_k8s.yaml` to match VM's IP address in ingress:
+    - `sed -i "s/192.168.99.100/$(minishift ip)/g" ./deploy_k8s.yaml`
+4. Run through demo once or cache all images for a smoother experience
+
 ## Introduction
 TODO
 
@@ -31,7 +44,3 @@ TODO
   - Execute build task
   - Run application with run task and following Theia instructions to access your application
   - Demonstrate that the application is updated and bug is fixed
-
-P.S. Set env var for your Che Server CHE_WORKSPACE_DEVFILE_DEFAULT__EDITOR=org.eclipse.che.editor.theia:next
-
-Set for optimization: CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent
