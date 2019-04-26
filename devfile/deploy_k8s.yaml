@@ -43,7 +43,6 @@ items:
     labels:
       app.kubernetes.io/name: employee-manager
       app.kubernetes.io/component: database
-    name: mongo
   spec:
     ports:
       - port: 27017
