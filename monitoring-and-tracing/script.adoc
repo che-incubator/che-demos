@@ -4,8 +4,8 @@
 
 == Introduction
 
-In the Cloud-Native world monitoring and distributed tracing are the crucial parts of the service not visible to the naked eye, but vital for DevOps in order to obtain various system metrics, easily investigate underline issues and identify potential performance bottlenecks. When the cloud IDE is deployed on a cluster it is utterly important to have enough observability in order to make sure that the development environment is in a good shape, stable and ready to be used. 
-In this session, it will be demonstrated that Eclipse Che running on Kubernetes or OpenShift provides not only a collaborative development environment to the teams but also monitoring and tracing facilities using the cutting edge Cloud-Native stack: Prometheus, Graphana and Jaeger.
+In the Cloud-Native world monitoring and distributed tracing are the crucial parts of the service not visible to the naked eye, but vital for DevOps in order to obtain various system metrics, easily investigate underlying issues and identify potential performance bottlenecks. When the cloud IDE is deployed on a cluster it is critical to have enough observability to make sure that the development environment is in a good shape, stable and ready to be used. 
+In this session, we will demonstrate that Eclipse Che running on Kubernetes or OpenShift provides not only a collaborative development environment to the teams but also monitoring and tracing facilities using the cutting edge Cloud-Native stack: Prometheus, Graphana and Jaeger.
 
 == Script (timing 10-15 minutes)
 - start workspace
