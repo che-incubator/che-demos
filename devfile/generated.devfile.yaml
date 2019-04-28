@@ -176,3 +176,4 @@ components:
   - type: chePlugin
     alias: typescript-ls
     id: 'ms-vscode.typescript:1.30.2'
+

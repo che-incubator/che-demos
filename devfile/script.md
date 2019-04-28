@@ -51,10 +51,10 @@ TODO
   - Use `chectl devfile:generate` command to generate Devfile:
     ```bash
     chectl devfile:generate \
-      --language=typescript \
+      --namespace='nodejs-app' \
       --selector='app.kubernetes.io/name=employee-manager' \
       --git-repo='https://github.com/sleshchenko/NodeJS-Sample-App.git' \
-      --namespace='nodejs-app' > generated.devfile.yaml
+      --language=typescript > generated.devfile.yaml
     ```
   - Demonstrate generated [Devfile](generated.devfile.yaml)
 - Customize generated Devfile to be able to start developing
@@ -68,3 +68,4 @@ TODO
   - Execute build task
   - Run application with run task and following Theia instructions to access your application
   - Demonstrate that the application is updated and bug is fixed
+- Add the devfile to NodeJS application sources and create a workspace with factory by Github URL
