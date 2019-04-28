@@ -183,7 +183,7 @@ commands:
     actions:
       - type: exec
         component: employee-manager
-        command: cd ${CHE_PROJECTS_ROOT}/NodeJS-Sample-App.git/EmployeeDB && npm install
+        command: cd ${CHE_PROJECTS_ROOT}/NodeJS-Sample-App.git/EmployeeDB && npm install && npm list
   - name: run
     actions:
       - type: exec
