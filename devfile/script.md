@@ -68,4 +68,6 @@ TODO
   - Execute build task
   - Run application with run task and following Theia instructions to access your application
   - Demonstrate that the application is updated and bug is fixed
-- Add the devfile to NodeJS application sources and create a workspace with factory by Github URL
+- Share Devfile
+  - Add the devfile to NodeJS application sources
+  - Create a workspace with factory by Github URL http://che-che.192.168.99.100.nip.io/f?url=https://github.com/sleshchenko/NodeJS-Sample-App
