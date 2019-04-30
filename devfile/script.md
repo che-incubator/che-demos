@@ -58,7 +58,7 @@ TODO
     ```
   - Demonstrate generated [Devfile](generated.devfile.yaml)
 - Customize generated Devfile to be able to start developing
-  - Override nodejs container entrypoint not to start an application from the begging
+  - Override nodejs container entrypoint not to start an application from the beginning
   - Configure a commands to build, run and stop an application
   - *Alternatively*, show diff between generated devfile and `ready-to-use.devfile.yml`, explaining differences
 - Fix the bug
