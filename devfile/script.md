@@ -1,5 +1,11 @@
 # Devfile Demo
 
+## Introduction
+Devfile is a new format for defining a development environment, aka Che Workspace.
+It's a straightforward and declarative format and `chectl` provides easy way to start using it.
+`chectl` is able to generate devfile for live application. Then generated devfile can be put into
+sources code repository to make it reusable on any Che installation.
+
 ## Setup
 1. Create minishift/minikube VM
     - Demo is tested with minishift VM with 8GB memory allocated
@@ -7,7 +13,7 @@
     - `chectl server:start [-p minishift]`
     - After start, additional configuration:
       - `CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent`
-    - TODO Should be updated to latest changes with v3 plugins format: Start custom plugin registry from `sleshchenko/che-plugin-registry:cached-typescript` and configure Che Server to use it
+    - Start custom plugin registry from `sleshchenko/che-plugin-registry:cached-typescript` and configure Che Server to use it
     *Alternatively:*
     ```bash
       # Set tested Che Server image
@@ -31,9 +37,6 @@
 To avoid potential issues, it may be safer to use a known working image (tested with image `amisevsk/che-server:dockercon` available in dockerhub)
 - `7.0.0-beta-3.0` has issues parsing the generated devfile
 - Current `beta-4.0` snapshot is working
-
-## Introduction
-TODO
 
 ## Script (timing ~15 minutes)
 
@@ -68,3 +71,20 @@ TODO
 - Share Devfile
   - Add the devfile to NodeJS application sources
   - Create a workspace with factory by Github URL http://che-che.192.168.99.100.nip.io/f?url=https://github.com/sleshchenko/NodeJS-Sample-App
+
+##### TODO
+- [ ] Rework Dockerfile of sample application to use CentOS image to avoid permissions issues on OpenShift
+- [ ] Rebuild newer Che images (Che Server, Plugin Registry)
+- [ ] Write introduction
+- [ ] Consider moving "Deploy NodeJS" app to set up phase to have more time on demonstrating Che instead of sample application
+
+##### Faced issues
+- [x] Che uses not latest version of Che Theia by default. Fixed by https://github.com/eclipse/che/pull/13235
+- [x] Plugin Registry was broken. Fixed by https://github.com/eclipse/che-plugin-registry/pull/134
+- [ ] Unable to set up entrypoint for application container during generate Devfile phase.
+It's needed to edit generated devfile to make it usable for development. Nice to improve this part.
+- [ ] Permissions on OpenShift. Application works fine on image that was used initially node:12.0-alpine, but
+is workspace there are issues because of anyuid.
+- [ ] Wait for mongo with init container. There is an issue in workspace if application has init containers
+that waits for another component, like mongo database. This topic should be investigated more. Maybe it's
+good enough just to manually remove init containers is such case.
