@@ -6,17 +6,14 @@
 2. Deploy Che server to local cluster
     - `chectl server:start [-p minishift]`
     - After start, additional configuration:
-      - `CHE_WORKSPACE_DEVFILE_DEFAULT__EDITOR=org.eclipse.che.editor.theia:next`
-        - This will need to be modified if https://github.com/eclipse/che/pull/13204 is applied to image used in demo
       - `CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent`
-    - Start custom plugin registry from sleshchenko/che-plugin-registry:cached-typescript and configure Che Server to use it
+    - TODO Should be updated to latest changes with v3 plugins format: Start custom plugin registry from `sleshchenko/che-plugin-registry:cached-typescript` and configure Che Server to use it
     *Alternatively:*
     ```bash
       # Set tested Che Server image
       export CHE_IMAGE_REPO=amisevsk/che-server
       export CHE_IMAGE_TAG=dockercon
 
-      export CHE_WORKSPACE_DEVFILE_DEFAULT__EDITOR=org.eclipse.che.editor.theia:next
       export CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent
 
       # custom plugin registry has cached binaries for typescript plugin
