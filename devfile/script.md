@@ -88,3 +88,4 @@ is workspace there are issues because of anyuid.
 - [ ] Wait for mongo with init container. There is an issue in workspace if application has init containers
 that waits for another component, like mongo database. This topic should be investigated more. Maybe it's
 good enough just to manually remove init containers is such case.
+- [ ] There is no way to bound projects sources to application container. https://github.com/eclipse/che/issues/12554 should be implemented to avoid including projects PVC to application deployment
