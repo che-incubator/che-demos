@@ -31,7 +31,8 @@ sources code repository to make it reusable on any Che installation.
     ```
 3. Modify `deploy_k8s.yaml` to match VM's IP address in ingress:
     - `sed -i "s/192.168.99.100/$(minishift ip)/g" ./deploy_k8s.yaml`
-4. Run through demo once or cache all images for a smoother experience
+4. Install tested binaries of `chectl`.
+5. Run through demo once or cache all images for a smoother experience
 
 ### Note
 To avoid potential issues, it may be safer to use a known working image (tested with image `sleshchenko/che-server:devfile-demo` available in dockerhub)
@@ -77,6 +78,7 @@ To avoid potential issues, it may be safer to use a known working image (tested 
 - [ ] Write introduction
 - [ ] Consider moving "Deploy NodeJS" app to set up phase to have more time on demonstrating Che instead of sample application
 - [ ] Theia Next is build on each commit and it's not stable process. For demo it would be better to use some unmodifiable docker image that is referenced in built custom plugin registry
+- [ ] Since chectl is used from branch and there is no corresponding release, it is needed to host used binaries somewhere
 
 ##### Faced issues
 - [x] Che uses not latest version of Che Theia by default. Fixed by https://github.com/eclipse/che/pull/13235
