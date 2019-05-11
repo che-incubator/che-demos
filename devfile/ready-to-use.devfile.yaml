@@ -80,7 +80,7 @@ components:
                     persistentVolumeClaim:
                       claimName: projects
                 containers:
-                  - name: web
+                  - name: web-app
                     image: 'sleshchenko/nodejs-mongo-sample:latest'
                     command: ['tail']
                     args: ['-f', '/dev/null']
@@ -161,7 +161,7 @@ components:
                 storage: 1Gi
   - type: chePlugin
     alias: typescript-ls
-    id: 'ms-vscode.typescript:1.30.2'
+    id: che-incubator/typescript/1.30.2
 commands:
   - name: run
     actions:
