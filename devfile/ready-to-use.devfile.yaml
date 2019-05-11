@@ -133,22 +133,6 @@ components:
               app.kubernetes.io/name: employee-manager
             ports:
               - port: 80
-        - kind: Ingress
-          apiVersion: extensions/v1beta1
-          metadata:
-            labels:
-              app.kubernetes.io/component: nodejs-app
-              app.kubernetes.io/name: employee-manager
-            name: nodejs-ingress
-          spec:
-            rules:
-              - host: nodejs.192.168.99.100.nip.io
-                http:
-                  paths:
-                    - path: /
-                      backend:
-                        serviceName: web
-                        servicePort: 80
         - kind: PersistentVolumeClaim
           apiVersion: v1
           metadata:

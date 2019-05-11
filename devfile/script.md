@@ -17,8 +17,8 @@ sources code repository to make it reusable on any Che installation.
     *Alternatively:*
     ```bash
       # Set tested Che Server image
-      export CHE_IMAGE_REPO=amisevsk/che-server
-      export CHE_IMAGE_TAG=dockercon
+      export CHE_IMAGE_REPO=sleshchenko/che-server
+      export CHE_IMAGE_TAG=devfile-demo
 
       export CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent
 
@@ -34,9 +34,8 @@ sources code repository to make it reusable on any Che installation.
 4. Run through demo once or cache all images for a smoother experience
 
 ### Note
-To avoid potential issues, it may be safer to use a known working image (tested with image `amisevsk/che-server:dockercon` available in dockerhub)
-- `7.0.0-beta-3.0` has issues parsing the generated devfile
-- Current `beta-4.0` snapshot is working
+To avoid potential issues, it may be safer to use a known working image (tested with image `sleshchenko/che-server:devfile-demo` available in dockerhub)
+- Latest `7.0.0-beta-5.0` is also working
 
 ## Script (timing ~15 minutes)
 
@@ -74,9 +73,10 @@ To avoid potential issues, it may be safer to use a known working image (tested 
 
 ##### TODO
 - [ ] Rework Dockerfile of sample application to use CentOS image to avoid permissions issues on OpenShift
-- [ ] Rebuild newer Che images (Che Server, Plugin Registry)
+- [x] Rebuild newer Che images (Che Server, Plugin Registry)
 - [ ] Write introduction
 - [ ] Consider moving "Deploy NodeJS" app to set up phase to have more time on demonstrating Che instead of sample application
+- [ ] Theia Next is build on each commit and it's not stable process. For demo it would be better to use some unmodifiable docker image that is referenced in built custom plugin registry
 
 ##### Faced issues
 - [x] Che uses not latest version of Che Theia by default. Fixed by https://github.com/eclipse/che/pull/13235
@@ -89,3 +89,4 @@ is workspace there are issues because of anyuid.
 that waits for another component, like mongo database. This topic should be investigated more. Maybe it's
 good enough just to manually remove init containers is such case.
 - [ ] There is no way to bound projects sources to application container. https://github.com/eclipse/che/issues/12554 should be implemented to avoid including projects PVC to application deployment
+- [ ] Different arguments for deploying Che with `chectl`, auto pick up `CHE_` env vars

@@ -6,10 +6,10 @@ items:
   apiVersion: apps/v1
   kind: Deployment
   metadata:
+    name: mongo
     labels:
       app.kubernetes.io/name: employee-manager
       app.kubernetes.io/component: database
-    name: mongo
   spec:
     selector:
       matchLabels:
@@ -23,8 +23,8 @@ items:
         name: mongo
       spec:
         containers:
-        - image: mongo
-          name: mongo
+        - name: mongo
+          image: mongo
           ports:
           - name: mongo
             containerPort: 27017
@@ -68,10 +68,10 @@ items:
   apiVersion: apps/v1
   kind: Deployment
   metadata:
+    name: nodejs-app
     labels:
       app.kubernetes.io/name: employee-manager
       app.kubernetes.io/component: nodejs-app
-    name: nodejs-app
   spec:
     selector:
       matchLabels:
@@ -85,8 +85,8 @@ items:
         name: nodejs-app
       spec:
         containers:
-        - image: "sleshchenko/nodejs-mongo-sample:latest"
-          name: web
+        - name: web-app
+          image: "sleshchenko/nodejs-mongo-sample:latest"
           ports:
           - containerPort: 3000
             name: http-server
@@ -120,35 +120,30 @@ items:
     selector:
       app.kubernetes.io/name: employee-manager
       app.kubernetes.io/component: nodejs-app
--
-  apiVersion: extensions/v1beta1
-  kind: Ingress
+- apiVersion: v1
+  kind: Route
   metadata:
-    name: nodejs-ingress
+    name: nodejs-web-endpoint
     labels:
       app.kubernetes.io/name: employee-manager
       app.kubernetes.io/component: nodejs-app
-    annotations:
-      kubernetes.io/ingress.class: "nginx"
   spec:
-    rules:
-    - host: nodejs.192.168.99.100.nip.io
-      http:
-        paths:
-        - path: /
-          backend:
-            serviceName: web
-            servicePort: 80
-- kind: PersistentVolumeClaim
+    to:
+      kind: Service
+      name: web
+    port:
+      targetPort: web
+-
   apiVersion: v1
+  kind: PersistentVolumeClaim
   metadata:
-    labels:
-      app.kubernetes.io/component: nodejs-app
-      app.kubernetes.io/name: employee-manager
     name: projects
+    labels:
+      app.kubernetes.io/name: employee-manager
+      app.kubernetes.io/component: nodejs-app
   spec:
     accessModes:
-      - ReadWriteOnce
+     - ReadWriteOnce
     resources:
       requests:
         storage: 1Gi
