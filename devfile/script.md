@@ -70,6 +70,7 @@ To avoid potential issues, it may be safer to use a known working image (tested 
   - Demonstrate that the application is updated and bug is fixed
 - Share Devfile
   - Add the devfile to NodeJS application sources
+  - Modify the Devfile to reference deploy_k8s.yaml and override entrypoint instead of containing all k8s objects
   - Create a workspace with factory by Github URL http://che-che.192.168.99.100.nip.io/f?url=https://github.com/sleshchenko/NodeJS-Sample-App
 
 ##### TODO
@@ -78,7 +79,7 @@ To avoid potential issues, it may be safer to use a known working image (tested 
 - [ ] Write introduction
 - [ ] Consider moving "Deploy NodeJS" app to set up phase to have more time on demonstrating Che instead of sample application
 - [ ] Theia Next is build on each commit and it's not stable process. For demo it would be better to use some unmodifiable docker image that is referenced in built custom plugin registry
-- [ ] Since chectl is used from branch and there is no corresponding release, it is needed to host used binaries somewhere
+- [x] Since chectl is used from branch and there is no corresponding release, it is needed to host used binaries somewhere
 
 ##### Faced issues
 - [x] Che uses not latest version of Che Theia by default. Fixed by https://github.com/eclipse/che/pull/13235
