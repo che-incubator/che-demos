@@ -7,4 +7,4 @@ projects:
       location: 'https://github.com/che-incubator/che-demos.git'
 components:
   - type: cheEditor
-    id: org.eclipse.che.editor.dirigible:1.0.0
+    id: dirigiblelabs/dirigible/1.0.0

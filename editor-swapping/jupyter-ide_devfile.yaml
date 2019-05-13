@@ -7,4 +7,4 @@ projects:
       location: 'https://github.com/che-incubator/che-demos.git'
 components:
   - type: cheEditor
-    id: org.eclipse.che.editor.jupyter:1.0.0
+    id: ws-skeleton/jupyter/1.0.0
