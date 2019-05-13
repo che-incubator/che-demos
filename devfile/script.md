@@ -31,7 +31,7 @@ sources code repository to make it reusable on any Che installation.
     ```
 3. Modify `deploy_k8s.yaml` to match VM's IP address in ingress:
     - `sed -i "s/192.168.99.100/$(minishift ip)/g" ./deploy_k8s.yaml`
-4. Install tested binaries of `chectl`.
+4. Install tested binaries of `chectl` https://drive.google.com/drive/folders/1zz8mNfYl-cPmVUP0SJVd4tf34ePdb9ed?usp=sharing
 5. Run through demo once or cache all images for a smoother experience
 
 ### Note
