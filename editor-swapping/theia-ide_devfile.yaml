@@ -7,6 +7,6 @@ projects:
       location: 'https://github.com/che-incubator/che-demos.git'
 components:
   - type: cheEditor
-    id: eclipse/che-theia/1.0.0
+    id: eclipse/che-theia/next
   - type: chePlugin
-    id: che-machine-exec-plugin/0.0.1
+    id: eclipse/che-machine-exec-plugin/0.0.1
