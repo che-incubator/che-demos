@@ -93,3 +93,4 @@ that waits for another component, like mongo database. This topic should be inve
 good enough just to manually remove init containers is such case.
 - [ ] There is no way to bound projects sources to application container. https://github.com/eclipse/che/issues/12554 should be implemented to avoid including projects PVC to application deployment
 - [ ] Different arguments for deploying Che with `chectl`, auto pick up `CHE_` env vars
+- [ ] Ingress vs Route
