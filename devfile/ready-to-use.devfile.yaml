@@ -146,6 +146,25 @@ components:
             resources:
               requests:
                 storage: 1Gi
+        -
+          apiVersion: extensions/v1beta1
+          kind: Ingress
+          metadata:
+            name: nodejs-ingress
+            labels:
+              app.kubernetes.io/name: employee-manager
+              app.kubernetes.io/component: nodejs-app
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+          spec:
+            rules:
+            - host: nodejs.192.168.99.100.nip.io
+              http:
+                paths:
+                - path: /
+                  backend:
+                    serviceName: web
+                    servicePort: 80
         - kind: PersistentVolumeClaim
           apiVersion: v1
           metadata:
