@@ -7,4 +7,4 @@ projects:
       location: 'https://github.com/che-incubator/che-demos.git'
 components:
   - type: cheEditor
-    id: eclipse/gwt/1.0.0
+    id: eclipse/gwt/7.0.0-beta-4.0
