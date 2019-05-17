@@ -133,19 +133,6 @@ components:
               app.kubernetes.io/name: employee-manager
             ports:
               - port: 80
-        - kind: PersistentVolumeClaim
-          apiVersion: v1
-          metadata:
-            labels:
-              app.kubernetes.io/component: database
-              app.kubernetes.io/name: employee-manager
-            name: mongo-persistent-storage
-          spec:
-            accessModes:
-              - ReadWriteOnce
-            resources:
-              requests:
-                storage: 1Gi
         -
           apiVersion: extensions/v1beta1
           kind: Ingress
@@ -165,6 +152,19 @@ components:
                   backend:
                     serviceName: web
                     servicePort: 80
+        - kind: PersistentVolumeClaim
+          apiVersion: v1
+          metadata:
+            labels:
+              app.kubernetes.io/component: database
+              app.kubernetes.io/name: employee-manager
+            name: mongo-persistent-storage
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
         - kind: PersistentVolumeClaim
           apiVersion: v1
           metadata:

@@ -13,8 +13,10 @@ sources code repository to make it reusable on any Che installation.
     - `chectl server:start [-p minishift]`
     - After start, additional configuration:
       - `CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent`
-    - Start custom plugin registry from `sleshchenko/che-plugin-registry:cached-typescript` and configure Che Server to use it
+    - Start custom plugin registry from `sleshchenko/che-plugin-registry:devfile-demo` and configure Che Server to use it
     *Alternatively:*
+    Note the particular version of `deploy_che.sh` should be used and it depends on Che Server image that is used.
+    With `sleshchenko/che-server:devfile-demo` the following version should be used https://github.com/eclipse/che/blob/f02735aa48c34ebe89b54e7f63cf84f85ea8dff3/deploy/openshift/deploy_che.sh
     ```bash
       # Set tested Che Server image
       export CHE_IMAGE_REPO=sleshchenko/che-server
@@ -25,19 +27,19 @@ sources code repository to make it reusable on any Che installation.
       # custom plugin registry has cached binaries for typescript plugin
       # and it saves ~1 minute on workspace start
       export PLUGIN_REGISTRY_IMAGE="sleshchenko/che-plugin-registry"
-      export PLUGIN_REGISTRY_IMAGE_TAG="cached-typescript"
+      export PLUGIN_REGISTRY_IMAGE_TAG="devfile-demo"
 
       ./deploy_che.sh --deploy-che-plugin-registry --project=che
     ```
 3. Modify `deploy_k8s.yaml` to match VM's IP address in ingress:
     - `sed -i "s/192.168.99.100/$(minishift ip)/g" ./deploy_k8s.yaml`
-4. Install tested binaries of `chectl` https://drive.google.com/drive/folders/1zz8mNfYl-cPmVUP0SJVd4tf34ePdb9ed?usp=sharing
-5. Deploy NodeJS application using [deploy_k8s.yaml](deploy_k8s.yaml)
+4. Deploy NodeJS application using [deploy_k8s.yaml](deploy_k8s.yaml)
    ```bash
      oc new-project nodejs-app
      oc apply -f deploy_k8s.yaml
    ```
    And then check that application is available on http://nodejs.$(minishift ip).nip.io/
+5. Install tested binaries of `chectl` https://drive.google.com/drive/folders/1zz8mNfYl-cPmVUP0SJVd4tf34ePdb9ed?usp=sharing
 6. Run through demo once or cache all images for a smoother experience
 
 ### Note
@@ -103,4 +105,15 @@ To avoid potential issues, it may be safer to use a known working image (tested 
       args: ["-f", "/dev/null"]
     ```
   - Create a workspace with factory by Github URL http://che-che.192.168.99.100.nip.io/f?url=https://github.com/sleshchenko/NodeJS-Sample-App
-    Note that all changes are already committed and pushed to repository. No need to push it yourself
+    Note that all changes are already committed and pushed to repository. No need to push it yourself.
+    Note that you have to stop previously started workspace, otherwise it will fails to start because of services conflicts
+
+### Additional info
+Demo docker images info:
+- Che Server `sleshchenko/che-server:devfile-demo`;
+  Updated: 17.05.19. Built is based onto [7.0.0-beta-5.0-SNAPSHOT](https://github.com/eclipse/che/commit/f02735aa48c34ebe89b54e7f63cf84f85ea8dff3)
+  Note that it should be deployed with configuration that is actual for this version if Che.
+- Che Plugin Registry `sleshchenko/che-plugin-registry/devfile-demo`
+  Updated: 17.05.19. Built is based onto [https://github.com/sleshchenko/che-plugin-registry/tree/devfileDemo](https://github.com/sleshchenko/che-plugin-registry/commit/06f74db94efae4a50a8b3d64fd13e11d6c5eadd6)
+- Che Theia `sleshchenko/che-theia:devfile-demo`
+  Updated: 17.05.19. Built is a copy of `eclipse/che-theia:next` that was actual during updating

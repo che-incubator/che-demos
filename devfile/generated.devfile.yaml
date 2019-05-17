@@ -131,6 +131,22 @@ components:
               app.kubernetes.io/name: employee-manager
             ports:
               - port: 80
+        - kind: Ingress
+          apiVersion: extensions/v1beta1
+          metadata:
+            labels:
+              app.kubernetes.io/component: nodejs-app
+              app.kubernetes.io/name: employee-manager
+            name: nodejs-ingress
+          spec:
+            rules:
+              - host: nodejs.192.168.99.100.nip.io
+                http:
+                  paths:
+                    - path: /
+                      backend:
+                        serviceName: web
+                        servicePort: 80
         - kind: PersistentVolumeClaim
           apiVersion: v1
           metadata:
@@ -144,25 +160,6 @@ components:
             resources:
               requests:
                 storage: 1Gi
-        -
-          apiVersion: extensions/v1beta1
-          kind: Ingress
-          metadata:
-            name: nodejs-ingress
-            labels:
-              app.kubernetes.io/name: employee-manager
-              app.kubernetes.io/component: nodejs-app
-            annotations:
-              kubernetes.io/ingress.class: "nginx"
-          spec:
-            rules:
-            - host: nodejs.192.168.99.100.nip.io
-              http:
-                paths:
-                - path: /
-                  backend:
-                    serviceName: web
-                    servicePort: 80
         - kind: PersistentVolumeClaim
           apiVersion: v1
           metadata:
@@ -178,4 +175,5 @@ components:
                 storage: 1Gi
   - type: chePlugin
     alias: typescript-ls
-    id: 'che-incubator/typescript/1.30.2'
+    id: che-incubator/typescript/1.30.2
+
