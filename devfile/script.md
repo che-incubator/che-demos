@@ -14,23 +14,26 @@ sources code repository to make it reusable on any Che installation.
     - After start, additional configuration:
       - `CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent`
     - Start custom plugin registry from `sleshchenko/che-plugin-registry:devfile-demo` and configure Che Server to use it
-    *Alternatively:*
-    Note the particular version of `deploy_che.sh` should be used and it depends on Che Server image that is used.
-    With `sleshchenko/che-server:devfile-demo` the following version should be used https://github.com/eclipse/che/blob/f02735aa48c34ebe89b54e7f63cf84f85ea8dff3/deploy/openshift/deploy_che.sh
-    ```bash
-      # Set tested Che Server image
-      export CHE_IMAGE_REPO=sleshchenko/che-server
-      export CHE_IMAGE_TAG=devfile-demo
 
-      export CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent
+  *Alternatively:*
+```bash
+  # Set tested Che Server image
+  export CHE_IMAGE_REPO=sleshchenko/che-server
+  export CHE_IMAGE_TAG=devfile-demo
 
-      # custom plugin registry has cached binaries for typescript plugin
-      # and it saves ~1 minute on workspace start
-      export PLUGIN_REGISTRY_IMAGE="sleshchenko/che-plugin-registry"
-      export PLUGIN_REGISTRY_IMAGE_TAG="devfile-demo"
+  export CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY=IfNotPresent
 
-      ./deploy_che.sh --deploy-che-plugin-registry --project=che
-    ```
+  # custom plugin registry has cached binaries for typescript plugin and tagged version for Che Theia
+  # and it saves ~1 minute on workspace start
+  export PLUGIN_REGISTRY_IMAGE="sleshchenko/che-plugin-registry"
+  export PLUGIN_REGISTRY_IMAGE_TAG="devfile-demo"
+
+  # Note the particular version of `deploy_che.sh` should be used
+  # and it depends on Che Server image that is used.
+  # With `sleshchenko/che-server:devfile-demo` the following version should be used
+  # https://github.com/eclipse/che/blob/f02735aa48c34ebe89b54e7f63cf84f85ea8dff3/deploy/openshift/deploy_che.sh
+  ./deploy_che.sh --deploy-che-plugin-registry --project=che
+```
 3. Modify `deploy_k8s.yaml` to match VM's IP address in ingress:
     - `sed -i "s/192.168.99.100/$(minishift ip)/g" ./deploy_k8s.yaml`
 4. Deploy NodeJS application using [deploy_k8s.yaml](deploy_k8s.yaml)
@@ -42,13 +45,9 @@ sources code repository to make it reusable on any Che installation.
 5. Install tested binaries of `chectl` https://drive.google.com/drive/folders/1zz8mNfYl-cPmVUP0SJVd4tf34ePdb9ed?usp=sharing
 6. Run through demo once or cache all images for a smoother experience
 
-### Note
-To avoid potential issues, it may be safer to use a known working image (tested with image `sleshchenko/che-server:devfile-demo` available in dockerhub)
-- Latest `7.0.0-beta-5.0` should be also working
-
 ## Script (timing ~15 minutes)
 
-- Demonstrate NodeJS sample application
+1. Demonstrate NodeJS sample application
   - Demonstrate that you have NodeJS sample application that uses mongo for storing data https://github.com/sleshchenko/NodeJS-Sample-App
   - Demonstrate that you have this application deployed on Kubernetes/OpenShift with dashboard (deployments, services, ingresses, PVCs)
   - Demo that application works fine but there is a bug, it's not possible to remove employee.
