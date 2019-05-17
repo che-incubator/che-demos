@@ -32,7 +32,13 @@ sources code repository to make it reusable on any Che installation.
 3. Modify `deploy_k8s.yaml` to match VM's IP address in ingress:
     - `sed -i "s/192.168.99.100/$(minishift ip)/g" ./deploy_k8s.yaml`
 4. Install tested binaries of `chectl` https://drive.google.com/drive/folders/1zz8mNfYl-cPmVUP0SJVd4tf34ePdb9ed?usp=sharing
-5. Run through demo once or cache all images for a smoother experience
+5. Deploy NodeJS application using [deploy_k8s.yaml](deploy_k8s.yaml)
+   ```bash
+     oc new-project nodejs-app
+     oc apply -f deploy_k8s.yaml
+   ```
+   And then check that application is available on http://nodejs.$(minishift ip).nip.io/
+6. Run through demo once or cache all images for a smoother experience
 
 ### Note
 To avoid potential issues, it may be safer to use a known working image (tested with image `sleshchenko/che-server:devfile-demo` available in dockerhub)
@@ -40,13 +46,11 @@ To avoid potential issues, it may be safer to use a known working image (tested 
 
 ## Script (timing ~15 minutes)
 
-- Deploy Node JS application with Mongo
-  - Demonstrate content of [deploy_k8s.yaml](deploy_k8s.yaml)
-  - Execute
-    * `oc new-project nodejs-app`
-    * `oc apply -f deploy_k8s.yaml`
+- Demonstrate NodeJS sample application
+  - Demonstrate that you have NodeJS sample application that uses mongo for storing data https://github.com/sleshchenko/NodeJS-Sample-App
+  - Demonstrate that you have this application deployed on Kubernetes/OpenShift with dashboard (deployments, services, ingresses, PVCs)
   - Demo that application works fine but there is a bug, it's not possible to remove employee.
-    On minishift/minikube it should be available at http://nodejs.$(minishift ip).nip.io/
+    Application should be available at http://nodejs.$(minishift ip).nip.io/
 - Demonstrate Devfile
   - Use `chectl devfile:generate` command to generate Devfile:
     ```bash
