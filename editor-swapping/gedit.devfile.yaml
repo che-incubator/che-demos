@@ -1,0 +1,10 @@
+specVersion: 0.0.1
+name: editors_gedit
+projects:
+  - name: che
+    source:
+      type: git
+      location: 'https://github.com/che-incubator/che-demos.git'
+components:
+  - type: cheEditor
+    id: https://raw.githubusercontent.com/skabashnyuk/eclipse-che-plugins/master/ksmster/gedit/1.0.0
