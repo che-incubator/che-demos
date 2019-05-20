@@ -111,7 +111,7 @@ sources code repository to make it reusable on any Che installation.
 Demo docker images info:
 - Che Server `sleshchenko/che-server:devfile-demo`;
   Updated: 17.05.19. Built is based onto [7.0.0-beta-5.0-SNAPSHOT](https://github.com/eclipse/che/commit/f02735aa48c34ebe89b54e7f63cf84f85ea8dff3)
-  Note that it should be deployed with configuration that is actual for this version if Che.
+  Note that it should be deployed with configuration that is actual for this version of Che.
 - Che Plugin Registry `sleshchenko/che-plugin-registry/devfile-demo`
   Updated: 17.05.19. Built is based onto [https://github.com/sleshchenko/che-plugin-registry/tree/devfileDemo](https://github.com/sleshchenko/che-plugin-registry/commit/06f74db94efae4a50a8b3d64fd13e11d6c5eadd6)
 - Che Theia `sleshchenko/che-theia:devfile-demo`
